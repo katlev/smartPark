@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <!--<link href="../assets/css/bootstrap.css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">
+    <!-- FontAwesome Styles-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- Morris Chart Styles-->
+    <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="../assets/css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css">
+
+</head>
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand waves-effect waves-dark" href="../index/index_mon.html"><i class="large material-icons">insert_chart</i>
+                <strong>Hivisi 海威科技</strong></a>
+            <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right" style="margin-right: 20px">
+            <li>
+                <a class="dropdown-button waves-effect waves-dark" data-activates="dropdown2">
+                    <span class="curTime"> </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <a href="../index/index_mon.html" class="waves-effect waves-dark"><i class="fa fa-pie-chart"></i>智慧园区</a>
+                </li>
+                <li>
+                    <a class="active-menu waves-effect waves-dark" href="../empty/empty.html"><i class="fa fa-cube"></i>人脸库</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">人脸库</h1>
+            <hr style="border-color:#E2E2E2;"/>
+        </div>
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-action" style="border-bottom: 1px solid #E2E2E2">
+                            <img src="../images/lunkuohua_renlian.png" alt="" style="width: 3%;height: 3%">
+                            <span style="font-size: 18px;margin-left: 5px">样本库</span>
+                            <button
+                                    type="button"
+                                    class="addGroup pull-right btn btn-primary"
+                                    data-toggle="modal"
+                                    data-target="#exampleModal"
+                                    data-watever="@mdo">
+                                <i class="fa fa-plus-circle"></i>
+                                <span>添加群组</span>
+                            </button>
+                        </div>
+                        <!--addGroup modal-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel">添加群组</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="message-text" class="control-label">群组名:</label>
+                                                <input type="text" class="form-control" id="message-text">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer modalBtn">
+                                        <button type="button" class="btn btn-primary" style="margin-left: 10px" id="buildGroup">确认</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--modal end-->
+                        <div class="card-content">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading " role="tab">
+                                        <span class="colSetLeftTitle">NO.</span>
+                                        <span class="colSetLeftTitle">群组</span>
+                                        <span class="panel-title pull-right colSetRightTitle">
+                                            展开
+                                        </span>
+                                        <span class="pull-right colSetMidTitle">
+                                            删除
+                                        </span>
+                                        <span class="pull-right colSetMidTitle">
+                                            编辑
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--分组列表-->
+                                <!--<div class="panel panel-default" >
+                                    <div class="panel-heading " role="tab" id="headingOne">
+                                        <span class="colSetLeft">1</span>
+                                        <span class="colSetLeft">face(5)</span>
+                                        <span class="panel-title pull-right colSetRight">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                <i class="fa fa-chevron-down"></i>
+                                            </a>
+                                        </span>
+                                        <span class="pull-right colSetMid">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                        <span class="pull-right colSetMid">
+                                            <i class="fa fa-edit"></i>
+                                        </span>
+                                    </div>
+
+                                    <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div class="btnList">
+                                                <a class="a-upload" onclick="selectAll(1)">全选</a>
+                                                <a class="a-upload" onclick="selectAll(2)">取消全选</a>
+                                                <a class="a-upload">删除</a>
+                                                <a type="button" data-toggle="modal" data-target="#addFace" class="a-upload">添加人脸</a>
+                                            </div>
+
+
+                                            <ul class="img_div" id="checkNum">
+                                                <li class="isImg" style="position: relative">
+                                                    <img src="../images/portrait2.png" alt="" style="width: 117px;height:160px">
+                                                    <input type="checkbox" class="isCheck" style="position:absolute;z-index:1;top:5px;left:10px;opacity:1;">
+                                                    <span class="imgName">katle</span>
+                                                    <span class="imgNum">450323199806061829</span>
+                                                </li>
+                                            </ul>
+
+
+                                        </div>
+                                    </div>
+                                </div>-->
+                            </div>
+                            <!--delGroup-->
+                            <div class="modal" id="delGroup" tabindex="-1" role="dialog" aria-labelledby="delGroupLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                   <span aria-hidden="true">
+                                                       &times;
+                                                   </span>
+                                            </button>
+                                            <h4 class="modal-title" id="delGroupLabel">你确认要删除该群组么？</h4>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                             <p>你确认要删除该群组么？</p>
+                                         </div>-->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left: 10px">取消</button>
+                                            <button type="button" class="btn btn-primary" id="checkDel">确认</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--delGroup end-->
+                            <!--editGroup-->
+                            <div class="modal" id="edGroup" tabindex="-1" role="dialog" aria-labelledby="delGroupLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                            <h4 class="modal-title" id="edGroupLabel">修改分组</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="editName">群组名</label>
+                                                    <input type="text" class="form-control" id="editName" placeholder="请输入修改后的群组名称">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" style="margin-left: 10px" id="checkEdit">确认</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--editGroup end-->
+                            <!--addGroup modal-->
+                            <div class="modal fade" id="addFace" tabindex="-1" role="dialog" aria-labelledby="addFaceLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-labelledby="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title" id="addFaceLabel">添加人脸</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="face-Name" class="control-label">姓名：</label>
+                                                    <input type="text" class="form-control" id="face-Name" placeholder="请输入要添加图片的姓名">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="face-Num" class="control-label">编号</label>
+                                                    <input type="text" class="form-control" id="face-Num">
+                                                </div>
+                                                <div class="form-group">
+                                                    <span id="imgUrl" class="imgBase"></span>
+                                                    <a href="javascript:;" class="a-upload">
+                                                        <input type="file" name="myFile" id="myFile" multiple="multiple">
+                                                        添加人脸
+                                                    </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="imgAdd" class="btn btn-primary imageAdd" style="margin-left: 10px" data-dismiss="modal">确认</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--addGroup modal-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+            <footer>
+                <p> &copy;桂林海威科技股份有限公司</p>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="../assets/js/jquery-2.1.4.min.js"></script>
+<!-- Bootstrap Js -->
+<!--<script src="../assets/js/bootstrap.min.js"></script>-->
+<script src="../assets/bootstrap/bootstrap.min.js"></script>
+<script src="../assets/materialize/js/materialize.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="../assets/js/jquery.metisMenu.js"></script>
+<!-- Custom Js -->
+<script src="../assets/js/custom-scripts.js"></script>
+<script src="js/empty.js"></script>
+
+</body>
+
+</html>
